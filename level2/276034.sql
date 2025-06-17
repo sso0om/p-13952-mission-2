@@ -1,0 +1,12 @@
+-- 조건에 맞는 개발자 찾기
+SELECT DISTINCT D.ID,
+       D.EMAIL,
+       D.FIRST_NAME,
+       D.LAST_NAME
+FROM DEVELOPERS D
+JOIN (SELECT S.CODE
+      FROM SKILLCODES S
+      WHERE S.NAME IN ('Python', 'C#')
+     ) AS S
+ON (D.SKILL_CODE & S.CODE) > 0
+ORDER BY D.ID;
